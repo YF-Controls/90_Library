@@ -1,0 +1,49 @@
+﻿FUNCTION "_checkVelocity" : LReal
+TITLE = Function:"Check velocity"
+{ S7_Optimized_Access := 'TRUE' }
+AUTHOR : cyanezf
+FAMILY : MotionControl
+NAME : _checkVelocity
+VERSION : 1.0
+//["version","date","author","description"],
+//["v1.0","2025-01-27","cyanezf","First version"]
+   VAR_INPUT 
+      MIN_VELOCITY : LReal;   // Min velocity
+      MAX_VELOCITY : LReal;   // Max velocity
+      inVelocity : LReal;   // Cururent velocity
+   END_VAR
+
+
+BEGIN
+	
+	IF #inVelocity > 0.0 THEN
+	  
+	  IF #inVelocity > #MAX_VELOCITY THEN
+	    #_checkVelocity := #MAX_VELOCITY;
+	  ELSIF #inVelocity < #MIN_VELOCITY THEN
+	    #_checkVelocity := #MIN_VELOCITY;
+	  ELSE
+	    #_checkVelocity:= #inVelocity;
+	  END_IF;
+	  
+	ELSIF #inVelocity < 0.0 THEN
+	  
+	  IF ABS(#inVelocity) > #MAX_VELOCITY THEN
+	    #_checkVelocity := - #MAX_VELOCITY;
+	  ELSIF ABS(#inVelocity) < #MIN_VELOCITY THEN
+	    #_checkVelocity := - #MIN_VELOCITY;
+	  ELSE
+	    #_checkVelocity := #inVelocity;
+	  END_IF;
+	  
+	ELSE
+	  
+	  #_checkVelocity := #inVelocity;
+	  
+	END_IF;
+	
+	// Save RLO
+	ENO := true;
+	
+END_FUNCTION
+

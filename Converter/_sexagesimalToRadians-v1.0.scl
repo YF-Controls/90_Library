@@ -1,0 +1,28 @@
+﻿FUNCTION "_sexagesimalToRadians" : Real
+TITLE = Function:"Get radians"
+{ S7_Optimized_Access := 'TRUE' }
+AUTHOR : cyanezf
+FAMILY : Converter
+NAME : _sexagesimalToRadians
+VERSION : 1.0
+//["version","date","author","description"],
+//["v1.0","2023-06-06","cyanezf","First version"]
+   VAR_INPUT 
+      angle : Real;   // Sexagesimal angle
+   END_VAR
+
+   VAR CONSTANT 
+      PI : Real := 3.141593;   // PI aproximation: 3.141 592 653 589 793 238
+   END_VAR
+
+
+BEGIN
+	(*
+	  This funtions converts an sexagesimal angle to radian
+	*)
+	
+	#_sexagesimalToRadians := #angle * #PI / 180.0;
+	ENO := TRUE;
+	
+END_FUNCTION
+

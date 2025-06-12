@@ -1,0 +1,12 @@
+﻿TYPE "nodeLink"
+TITLE = Type:"Node link"
+VERSION : 0.1
+//["version","date","author","description"],
+//["v1.0","2023-10-19","cyanezf","First version"]
+   STRUCT
+      sourceToDest { S7_SetPoint := 'False'} : "nodeLinkSourceToDest";   // Previous node link
+      destToSource { S7_SetPoint := 'False'} : "nodeLinkDestToSource";   // Next node link
+   END_STRUCT;
+
+END_TYPE
+

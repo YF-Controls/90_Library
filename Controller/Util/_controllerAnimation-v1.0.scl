@@ -1,0 +1,111 @@
+﻿FUNCTION_BLOCK "_controllerAnimation"
+TITLE = Function: Drive Animation
+{ S7_Optimized_Access := 'TRUE' }
+AUTHOR : cyanezf
+FAMILY : Controller
+NAME : _controllerAnimation
+VERSION : 1.0
+//["version","date","author","description"],
+//["v1.0","2020-10-19","cyanezf","First version"]
+   VAR_OUTPUT 
+      full { ExternalWritable := 'False'} : DWord;   // OR: Full coded for animation
+      action { ExternalWritable := 'False'} : USInt;   // OR: Action coded for animation
+      alarm { ExternalWritable := 'False'} : USInt;   // OR: Alarm coded for animation
+      ready { ExternalWritable := 'False'} : USInt;   // OR: Ready to work for animation
+      om { ExternalWritable := 'False'} : USInt;   // OR: Operating mode for animation
+   END_VAR
+
+   VAR_IN_OUT 
+      isRunning { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive is running
+      direction { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 0=Forward; 1=Backward
+      a2w_triggered { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive warning alarm
+      a3e_triggered { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive error alarm
+      maintReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive is ready to work in maintenance mode
+      manualReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive is ready to work in manual mode
+      semiReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive is ready to work in semiautomatic mode
+      autoReady { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // IOX: 1=Drive is ready to work in automatic mode
+      esc_om : Struct   // IOX: ESC operating mode bits
+         SEL : USInt;   // IOX: Current operating mode
+         controlOn : Bool;   // IOX: 1=Control on
+         warmRestart : Bool;   // IOX: 1=Warmrestart (from any mode to automatic)
+         stopMode : Bool;   // IOX: 1=Stop mode
+         maintMode : Bool;   // IOX: 1=Maintenance mode
+         manualMode : Bool;   // IOX: 1=Manual mode
+         semiMode : Bool;   // IOX: 1=Semiautomatic mode
+         autoMode : Bool;   // IOX: 1=Automatic mode
+         emrgStopUnackn : Bool;   // IOX: 1=Emergency stop unacknowledged. (released but not ackn.)
+         emrgStopTriggered : Bool;   // IOX: 1=Emergency stop triggered
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	(/*
+	########################################
+	Dependencies:
+	UDT: operatingModeOutput
+	########################################
+	How it works:
+	Outputs
+	 FU = full
+	 AC = action
+	 AL = alarm
+	 RE = ready
+	 OM = operating mode
+	
+	
+	FU AC AL RE OM |
+	b0 b0          | 1=Is running
+	b1 b1          | 0=Forward, 1=Backward
+	b2    b0       | 1=Warning alarm (a2w)
+	b3    b1       | 1=Error alarm (a3e)
+	b4       b0    | 1=Drive is ready to work in maintenance mode
+	b5       b1    | 1=Drive is ready to work in manual mode
+	b6       b2    | 1=Drive is ready to work in semiautomatic mode
+	b7       b3    | 1=Drive is ready to work in automatic mode
+	b8          b0 | 1=Warm restart
+	b8          b1 | 1=Stop mode
+	bA          b2 | 1=Maintenance mode
+	bB          b3 | 1=Manual mode
+	bC          b4 | 1=Semiautomatic mode
+	bD          b5 | 1=Automatic mode
+	bE          b6 | 1=Emergency stop unacknowledged
+	bF          b7 | 1=Emergency stop triggered
+	
+	b10..b1F are reserved for future implementations.
+	
+	*/)
+	
+	// Clear
+	#full := 2#0;
+	#om := #action := #alarm := #ready := 2#0;
+	
+	// Action
+	#full.%X0 := #action.%X0 := #isRunning;
+	#full.%X1 := #action.%X1 := #direction;
+	
+	// Alarm
+	#full.%X2 := #alarm.%X0 := #a2w_triggered;
+	#full.%X3 := #alarm.%X1 := #a3e_triggered;
+	
+	// Ready
+	#full.%X4 := #ready.%X0 := #maintReady;
+	#full.%X5 := #ready.%X1 := #manualReady;
+	#full.%X6 := #ready.%X2 := #semiReady;
+	#full.%X7 := #ready.%X3 := #autoReady;
+	
+	// Operating mode
+	#full.%X8 := #om.%X0 := #esc_om.warmRestart;
+	#full.%X9 := #om.%X1 := #esc_om.stopMode;
+	#full.%X10 := #om.%X2 := #esc_om.maintMode;
+	#full.%X11 := #om.%X3 := #esc_om.manualMode;
+	#full.%X12 := #om.%X4 := #esc_om.semiMode;
+	#full.%X13 := #om.%X5 := #esc_om.autoMode;
+	#full.%X14 := #om.%X6 := #esc_om.emrgStopUnackn;
+	#full.%X15 := #om.%X7 := #esc_om.emrgStopTriggered;
+	
+	// Return
+	ENO := true;
+	
+END_FUNCTION_BLOCK
+

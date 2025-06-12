@@ -1,0 +1,13 @@
+﻿TYPE "nodeLinkSourceToDest"
+TITLE = Type:"Source node"
+VERSION : 0.1
+//["version","date","author","description"],
+//["v1.1","2023-10-20","cyanezf","Short cycle added"],
+//["v1.0","2023-10-19","cyanezf","First version"]
+   STRUCT
+      transferring : Bool;   // 1=Transferring object
+      shortCycle : Bool;   // 1=Short cycle
+   END_STRUCT;
+
+END_TYPE
+

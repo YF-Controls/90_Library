@@ -1,0 +1,17 @@
+﻿TYPE "TO_axisBasicData"
+TITLE = Type:"TO Axis basic data"
+VERSION : 0.1
+//["version","date","author","description"],
+//["v1.0","2023-10-19","cyanezf","First version"]
+   STRUCT
+      actualPosition { ExternalWritable := 'False'} : LReal;   // SR: Actual position
+      actualAcceleration { ExternalWritable := 'False'} : LReal;   // SR: Actual acceleration
+      actualVelocity { ExternalWritable := 'False'} : LReal;   // SR: Actual velocity
+      actualTorque { ExternalWritable := 'False'} : LReal;   // SR: Actual Torque
+      status { ExternalWritable := 'False'; S7_SetPoint := 'False'} : "TO_positioningAxis_status";   // SR: Status
+      warning { ExternalWritable := 'False'; S7_SetPoint := 'False'} : "TO_positioningAxis_warning";   // SR: Warning
+      error { ExternalWritable := 'False'; S7_SetPoint := 'False'} : "TO_positioningAxis_error";   // SR: Error
+   END_STRUCT;
+
+END_TYPE
+

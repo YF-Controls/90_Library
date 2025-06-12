@@ -1,12 +1,11 @@
 ﻿FUNCTION_BLOCK "_teachPinPositionValues"
-TITLE = Function:"Teach pin position values"
+TITLE = Function:Teach pin position values
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : MotionControl
+FAMILY : Controller/MotionControl
 NAME : _teachPinPositionValues
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2025-01-17","cyanezf","First version"]
+
    VAR_INPUT 
       pin { ExternalWritable := 'False'} : Bool;
       position { ExternalWritable := 'False'} : Real;
@@ -31,7 +30,18 @@ VERSION : 1.0
 
 
 BEGIN
-	
+	(*--{
+		"Log": [
+	 		{"version":"v1.0", "date" : "2025-01-17", "author": "cyanezf, "description": "First version"},
+		],
+		"dependencies" : [],
+		"description" : "
+
+This function is used to save pin sensor position according to Axis position in forward and backward directions.
+
+		"
+	}--*)
+
 	// Update edges
 	#pinFp := #pin AND NOT #fp;
 	#pinFn := NOT #pin AND #fp;

@@ -1,9 +1,15 @@
 ﻿TYPE "TO_positioningAxis_status"
-TITLE = Type:"TO Positioning Axis - status"
-VERSION : 0.1
-//["version","date","author","description"],
-//["v1.1","2023-10-21","cyanezf","IsRunning and direction added"],
-//["v1.0","2023-10-19","cyanezf","First version"]
+TITLE = Type:TO Positioning Axis - status
+VERSION : 1.1
+//(*--{"Log": [
+//{"version":"v1.1", "date" : "2023-10-21", "author": "cyanezf, "description": "IsRunning and direction added"},
+//{"version":"v1.0", "date" : "2023-10-19", "author": "cyanezf, "description": "First version"},
+//],
+//"family":"Controller/MotionControl",
+//"dependencies" : [],
+//"description" : "TO Positioning Axis - error"
+//}--*)
+
    STRUCT
       gearIn { ExternalWritable := 'False'} : Bool;   // SR: 1=Gear in 
       inGear { ExternalWritable := 'False'} : Bool;   // SR: 1=In gear

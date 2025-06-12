@@ -1,13 +1,11 @@
-﻿FUNCTION "_mc_manualControl_speed1Axis_new" : Void
-TITLE = Function:"Manual Control - Speed 1 Axis"
+﻿FUNCTION "_mc_manualControl_speed1Axis" : Void
+TITLE = Function:Manual Control for Speed Axis
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : 'Controller/MotionControl'
 NAME : _mc_manualControl_speed1Axis
 VERSION : 1.1
-//["version","date","author","description"],
-//["v1.1","2023-12-13","cyanezf","Refactor to scl"],
-//["v1.0","2023-12-12","cyanezf","First version"]
+
    VAR_INPUT 
       manualOk : Bool;   // 1=Manual ok
       controller_actualCommand : Int;   // Controller: Actual command
@@ -39,13 +37,31 @@ VERSION : 1.1
 
 
 BEGIN
-	
+	//["version","date","author","description"],
+//["v1.1","2023-12-13","cyanezf","Refactor to scl"],
+//["v1.0","2023-12-12","cyanezf","First version"]
+
+	(*--{
+		"Log": [
+	 		{"version":"v1.3", "date" : "2024-08-16", "author": "cyanezf, "description": "Refactor to scl"},
+	 		{"version":"v1.2", "date" : "2024-08-15", "author": "cyanezf, "description": "Command and actualCommand changed to int"},
+			{"version":"v1.1", "date" : "2023-12-13", "author": "cyanezf, "description": "Homed name changed"},
+			{"version":"v1.0", "date" : "2023-12-12", "author": "cyanezf, "description": "First version"},
+		],
+		"dependencies" : ["mc_manual_positioning1Axis", "TON_TIME", ],
+		"description" : "
+
+		This function is used to move a Speed Axis with jog forward and jog backward commands.
+
+		"
+	}--*)
+
 	REGION Watchdog
 	  // HMI command 34 sets forward movement
 	  // HMI command 35 sets backward movement
 	  // HMI command 42 sets positioning movement
 	  
-	  #aux_manualMovementTon(IN := #hmiCommand = #HMI_CMD_0034_MANUAL_FWD OR #hmiCommand = #HMI_CMD_0035_MANUAL_BWD OR #hmiCommand = #HMI_CMD_0042_ABSOLUTE_POSITIONING,
+	  #aux_manualMovementTon(IN := #hmiCommand = #HMI_CMD_0034_MANUAL_FWD OR #hmiCommand = #HMI_CMD_0035_MANUAL_BWD,
 	                         PT := #MAX_MOVEMENT_TIME);
 	  
 	  IF #aux_manualMovementTon.Q THEN

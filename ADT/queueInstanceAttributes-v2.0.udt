@@ -1,16 +1,14 @@
 ﻿TYPE "queueInstanceAttributes"
 TITLE = Type:Queue instance attributes
 VERSION : 2.0
-//{"Log": [
+//(*--{"Log": [
 //{"version":"v2.0", "date" : "2023-01-18", "author": "cyanezf, "description": "UDT name changed"},
 //{"version":"v1.0", "date" : "2022-01-01", "author": "cyanezf, "description": "First version"},
 //],
 //"family":"AbstractDataType",
 //"dependencies" : ["queueInstanceAttributes"],
-//"description" : "Queue instance attributes"}
-//
-
-
+//"description" : "Queue instance attributes"
+//}--*)
 
    STRUCT
       front : DInt := 0;   // Front pointer of queue

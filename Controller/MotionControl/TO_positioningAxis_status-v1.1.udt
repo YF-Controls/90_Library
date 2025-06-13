@@ -1,14 +1,29 @@
 ﻿TYPE "TO_positioningAxis_status"
 TITLE = Type:TO Positioning Axis - status
+AUTHOR : cyanezf
+FAMILY: Controller/MotionControl
 VERSION : 1.1
-//(*--{"Log": [
-//{"version":"v1.1", "date" : "2023-10-21", "author": "cyanezf, "description": "IsRunning and direction added"},
-//{"version":"v1.0", "date" : "2023-10-19", "author": "cyanezf, "description": "First version"},
-//],
-//"family":"Controller/MotionControl",
-//"dependencies" : [],
-//"description" : "TO Positioning Axis - error"
-//}--*)
+
+//(*--
+//# Falimy
+//* Controller/MotionControl
+//
+//# Log
+//| version | date | author | description |
+//|:-------:|:----:|:------:|:------------|
+//| v1.1 | 2023-10-21 | cyanezf | IsRunning and direction added |
+//| v1.0 | 2022-10-12 | cyanezf | First version |
+//
+//# Dependencies
+//| Dependency |
+//|:-----------!
+// 
+//# Description
+//TO Positioning Axis - error
+//
+//#
+//_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+//--*)
 
    STRUCT
       gearIn { ExternalWritable := 'False'} : Bool;   // SR: 1=Gear in 

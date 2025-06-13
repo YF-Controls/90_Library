@@ -21,19 +21,26 @@ VERSION : 1.0
    END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-	 		{"version":"v1.0", "date" : "2024-11-28", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["tcpCommunicationControl", "TSEND"],
-		"description" : "
+(*--
 
-This function sends data to a remote partnes as TCP server or client.
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2024-11-28 | cyanezf | First version |
 
-		"
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
+| tcpCommunicationControl |
+| TSEND |
 
-	
+# Description
+This function sends data to a remote partner as TCP server or client.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Sender
 	#sender(REQ:=#TX_control.command = #COM_CONTROL_1_REQ,
 	        LEN:=#TX_control.length,

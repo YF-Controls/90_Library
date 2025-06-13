@@ -1,12 +1,11 @@
 ﻿FUNCTION "_externalHmiCommand" : Void
-TITLE = Function:"External HMI Command"
+TITLE = Function:External HMI Command
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : HMI
 NAME : _externalHmiCommand
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2025-03-19","cyanezf","First version"]
+
    VAR_INPUT 
       ID : UInt;   // Drive ID
       ext_selector : Int;   // External ID to control
@@ -32,8 +31,24 @@ VERSION : 1.0
       HMI_CMD_0_NIL : UInt := 0;
    END_VAR
 
-
 BEGIN
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-03-19 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function updates `hmiCommand` with `ext_hmicommand` and `ext_selector` matches with `ID`.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Catch selector events
 	#match := #ext_selector = #ID;

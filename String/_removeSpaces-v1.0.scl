@@ -21,7 +21,24 @@ VERSION : 1.0
 
 
 BEGIN
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-03-23 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function removes spaces from `in`.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	#sourceLength := LEN(#in);
 	#destLength := MAX_LEN(#_removeSpaces);
 	#newLength := 0;
@@ -44,7 +61,10 @@ BEGIN
 	  RETURN;
 	END_IF;
 	
+	// Return
 	#_removeSpaces := #newString;
+
+	// Save RLO
 	ENO := true;
 	
 END_FUNCTION

@@ -1,14 +1,11 @@
 ﻿FUNCTION_BLOCK "_enableDisableButton"
-TITLE = Function:"Enable/Disiable button"
+TITLE = Function:Enable/Disiable button
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : HMI
 NAME : _enableDisableButton
 VERSION : 2.0
-//["version","date","author","description"],
-//["v2.0","2025-05-01","cyanezf","HMI_button added"]
-//["v1.1","2025-04-29","cyanezf","enabled as inout to store status outside"]
-//["v1.0","2025-03-18","cyanezf","First version"]
+
    VAR_INPUT 
       DI_button { ExternalWritable := 'False'} : Bool;   // IR: DI button
       IT_enable { ExternalWritable := 'False'} : Bool;   // IR: FP=IT enable signal
@@ -39,9 +36,32 @@ VERSION : 2.0
       END_STRUCT;
    END_VAR
 
-
 BEGIN
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v2.0 | 2025-05-01 | cyanezf | `HMI_button` added |
+| v1.1 | 2025-04-29 | cyanezf | `enabled` as inout to store status outside |
+| v1.0 | 2025-03-18 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| escOutput |
+
+# Description
+This function enable/disable a bit when:
+1. DI_button pulse is detected
+2. IT_enable
+3. IT_disable
+4. HMI_button pulse is detected
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Check button edge
 	IF #DI_button AND NOT #private.DI_button THEN
 	  #enabled := NOT #enabled;

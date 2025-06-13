@@ -1,20 +1,11 @@
 ﻿FUNCTION_BLOCK "_manualControl"
-TITLE = Function:"Manual control"
+TITLE = Function:Manual control
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : MotionControl
+FAMILY : Controller
 NAME : _manualControl
 VERSION : 6.0
-//["version","date","author","description"],
-//["v6.0","2024-04-20","cyanezf","Features were added, interface updated"],
-//["v5.0","2024-01-19","cyanezf","Fix bugs"],
-//["v5.0","2023-10-10","cyanezf","Remove config input, add option static and HMI Commands"],
-//["v4.0","2023-10-05","cyanezf","Add config input"],
-//["v3.0","2023-09-07","cyanezf","Change manualReady from in to inout"],
-//["v2.1","2023-09-06","cyanezf","Fix bugs"],
-//["v2.0","2023-07-28","cyanezf","HMI command variable is inout"],
-//["v1.0","2020-01-01","cyanezf","First version"]
-//
+
    VAR_INPUT 
       enable { ExternalWritable := 'False'} : Bool;   // IR: 1=Enable manual mode 
       ready { ExternalWritable := 'False'} : Bool;   // IR: 1=Drive is ready to work in manual mode
@@ -85,46 +76,62 @@ VERSION : 6.0
       STATUS_7003_BACKWARD_LIMIT : Int := 16#7003;   // Status Warning 7003: Backward limit exceeded
    END_VAR
 
-
 BEGIN
-	(/*
-	########################################
-	Dependencies:
-	
-	########################################
-	forceToClearToggle is a signal to clear toggle option
-	
-	########################################
-	option.buttonMode: 0=Manual movement while button is pressed.
-	                   1=Manual movement toggle with button.
-	option.sensorMode: 0=Manual movement continues if sensor changes.
-	                   1=Manual movement stops if sensor changes.
-	option.autoEnable: 0=Use HMI Command 08
-	                   1=Always enabled
-	
-	########################################
-	Used HMI commands:
-	HMI command 08 enable/disable movement in manual
-	HMI command 34 sets forward movement
-	HMI command 35 sets backward movement
-	HMI command 38 enable/disable auto enable
-	HMI command 40 sets button feature option
-	HMI command 41 sets sensor feature option
-	
-	########################################
-	Status codes:
-	ENO  Code   Description
-	TRUE 0x0000 Status 0: Drive is NOT in manual mode
-	TRUE 0x0001 Status 1: Drive is in manual mode AND drive is ready TO work AND Hmi enabled movement
-	TRUE 0x0002 Status 2: Drive is moving forward
-	TRUE 0x0003 Status 3: Drive is moving backward
-	TRUE 0x7000 Status Warning 7000: Drive is NOT ready TO work
-	TRUE 0x7001 Status Warning 7001: Drive is NOT enabled TO move
-	TRUE 0x7002 Status Warning 7002: Forward limit exceeded
-	TRUE 0x7003 Status Warning 7003: Backward limit exceeded
-	
-	*/)
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v6.0 | 2024-04-20 | cyanezf | Features were added, interface updated |
+| v5.0 | 2024-01-19 | cyanezf | Fix bugs |
+| v4.0 | 2023-10-10 | cyanezf | Remove config input, add option static and HMI Commands |
+| v3.0 | 2023-10-05 | cyanezf | Add config input |
+| v2.1 | 2023-09-06 | cyanezf | Fix bugs |
+| v2.0 | 2023-07-28 | cyanezf | HMI command variable is inout |
+| v1.0 | 2020-01-01 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TON_TIME |
+
+# Description
+This function controls a standard manual movement.
+
+## Options
+| option | description |
+|:-------|:------------|
+| forceToClearToggle | It'is a signal to clear toggle option |
+| option.buttonMode | 0=Manual movement while button is pressed. 1=Manual movement toggle with button. |
+| option.sensorMode | 0=Manual movement continues if sensor changes. 1=Manual movement stops if sensor changes. |
+| option.autoEnable | 0=Use HMI Command 08. 1=Always enabled |
+
+## Used HMI commands
+| command | description |
+|:-------:|:------------|
+| 8 | enable/disable movement in manual |
+| 34 | sets forward movement |
+| 35 | sets backward movement |
+| 38 | enable/disable auto enable |
+| 40 | sets button feature option |
+| 41 | sets sensor feature option |
+
+## RLO and Status output codes
+| RLO | code | description |
+|:---:|:----:|:------------|
+| TRUE | 0 | Drive is NOT in manual mode |
+| TRUE | 1 | Drive is in manual mode AND drive is ready TO work AND Hmi enabled movement |
+| TRUE | 2 | Drive is moving forward |
+| TRUE | 3 | Drive is moving backward |
+| TRUE | 0x7000 | Warning. Drive is NOT ready TO work |
+| TRUE | 0x7001 | Warning. Drive is NOT enabled TO move |
+| TRUE | 0x7002 | Warning. Forward limit exceeded |
+| TRUE | 0x7003 | Warning. Backward limit exceeded |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	REGION Clear
 	  
 	  // Clear toggle option
@@ -285,12 +292,11 @@ BEGIN
 	  
 	END_REGION
 	
-	REGION Return
+	REGION Save RLO
 	  
 	  ENO := TRUE;
 	  
 	END_REGION
-	
-	
+		
 END_FUNCTION_BLOCK
 

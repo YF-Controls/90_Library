@@ -1,17 +1,11 @@
 ﻿FUNCTION_BLOCK "_background"
-TITLE = Function:"Background"
+TITLE = Function:Background
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : System
 NAME : _background
 VERSION : 3.1
-//["version","date","author","description"],
-//["v3.1","2025-05-29","cyanezf","tmp_loadFactory added"],
-//["v3.0","2025-05-06","cyanezf","Refactored"],
-//["v2.0","2025-04-30","cyanezf","Tmp variables control added"],
-//["v1.1","2023-11-12","cyanezf","Fix bugs"],
-//["v1.0","2020-09-06","cyanezf","First version"]
-//
+
    VAR_INPUT 
       OB_initial_call { ExternalWritable := 'False'} : Bool;   // IR: Map in DI thenInitial call from OB1
       HW_firstScan { ExternalWritable := 'False'} : Bool;   // IR: Map in DI the first scan from Memory bit
@@ -72,16 +66,30 @@ VERSION : 3.1
 
 
 BEGIN
-	(/*
-	########################################
-	Dependencies:
-	
-	########################################
-	How it works:
-	This function generates the Date Time, cycle time AND rest OF
-	useful AND global flags.
-	*/)
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v3.1 | 2025-05-29 | cyanezf | tmp_loadFactory added |
+| v3.0 | 2025-05-06 | cyanezf | Refactored |
+| v2.0 | 2025-04-30 | cyanezf | Tmp variables control added |
+| v1.1 | 2023-11-12 | cyanezf | Fix bugs |
+| v1.0 | 2020-09-06 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TON_TIME |
+| RUNTIME |
+| RD_LOC_T |
+
+# Description
+This function generates datetime, cycle time and rest of useful and global flags.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Provisional
 	#PROV_FALSE := 0;
@@ -198,7 +206,7 @@ BEGIN
 	   #tmp_loadFactory := false;
 	 END_IF;
 	 
-	// Return
+	// Save RLO
 	ENO := true;
 	
 END_FUNCTION_BLOCK

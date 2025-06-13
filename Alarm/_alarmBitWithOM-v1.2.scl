@@ -22,28 +22,28 @@ VERSION : 1.2
       r_auto : Bool;   // Reset auto ready
    END_VAR
 
-
 BEGIN
-	(*--{
-		"Log": [
-	 		{"version":"v1.2", "date" : "2025-02-15", "author": "cyanezf, "description": "u_mapAlarm was removed"},
-			{"version":"v1.1", "date" : "2025-01-27", "author": "cyanezf, "description": "s_localAlarm was added"},
-			{"version":"v1.0", "date" : "2023-10-27", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : [],
-		"description" : "
+(*--
 
-How it works:
-#alarm is true WHILE #incoming event is true.
-alarm is false when incoming event is false, outcoming event is true AND ackn is true.
-ackn can be external BY #ackn variable OR automatic when acknNeeded variable is false.
-alarm id changes TO #ID when there is NOT a previous alarm triggered.
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.2 | 2025-02-15 | cyanezf | `u_mapAlarm` was removed |
+| v1.1 | 2025-01-27 | cyanezf | `s_localAlarm` was added |
+| v1.0 | 2023-10-27 | cyanezf | First version |
 
-s_groupAlarm is set TO true when alarm is true
-s_globalAlarm is set TO true when #alarm is true
-r_maint, r_manual, r_semi OR r_auto are set TO false when #alarm is true
-	 "
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+alarm is true WHILE `incoming` event is true.
+alarm is false when `incoming` event is false, `outcoming` event is true AND `ackn` is true.
+ackn. can be external BY `ackn` variable OR automatic when `acknNeeded` variable is false.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Set/Reset alarm
 	IF #incoming THEN

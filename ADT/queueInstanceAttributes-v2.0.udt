@@ -1,14 +1,29 @@
 ﻿TYPE "queueInstanceAttributes"
 TITLE = Type:Queue instance attributes
+AUTHOR : cyanezf
+FAMILY: ADT
 VERSION : 2.0
-//(*--{"Log": [
-//{"version":"v2.0", "date" : "2023-01-18", "author": "cyanezf, "description": "UDT name changed"},
-//{"version":"v1.0", "date" : "2022-01-01", "author": "cyanezf, "description": "First version"},
-//],
-//"family":"AbstractDataType",
-//"dependencies" : ["queueInstanceAttributes"],
-//"description" : "Queue instance attributes"
-//}--*)
+
+//(*--
+//# Falimy
+//* Node
+//
+//# Log
+//| version | date | author | description |
+//|:-------:|:----:|:------:|:------------|
+//| v2.0 | 2023-01-18 | cyanezf | Name changed |
+//| v1.0 | 2022-01-01 | cyanezf | First version |
+//
+//# Dependencies
+//| Dependency |
+//|:-----------!
+// 
+//# Description
+//Queue instance attributes
+//
+//#
+//--_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+//--*)
 
    STRUCT
       front : DInt := 0;   // Front pointer of queue

@@ -1,13 +1,11 @@
-﻿FUNCTION_BLOCK "_multicontrolAI_singleRoller_new"
-TITLE = Function:"Multicontrol AI for single motoroller"
+﻿FUNCTION_BLOCK "_multicontrolAI_singleRoller"
+TITLE = Function:Multicontrol AI for single motoroller
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Controller
 NAME : _multicontrolAI_singleRoller
 VERSION : 1.1
-//["version","date","author","description"],
-//["v1.1","2025-06-10","cyanezf","Refactor to scl"],
-//["v1.0","2023-06-06","cyanezf","First version"]
+
    VAR_INPUT 
       controlOn { ExternalWritable := 'False'} : Bool;   // IR: 1=Control on
       emrgStopOk { ExternalWritable := 'False'} : Bool;   // IR: 1=Emergency ok
@@ -35,9 +33,25 @@ VERSION : 1.1
       NO_SPEED_PER : SInt := 0;
    END_VAR
 
-
 BEGIN
-	
+(*--
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2024-05-09 | cyanezf | Refactor to scl |
+| v1.0 | 2023-06-06 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function controls Interroll Multicontrol AI for single roller.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Speed to %
 	// MAX_SPEED -> 100%
 	// #SP_speed  -> ?

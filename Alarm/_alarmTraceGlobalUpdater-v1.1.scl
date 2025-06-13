@@ -24,19 +24,25 @@ VERSION : 1.1
   END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.1", "date" : "2025-06-12", "author": "cyanezf, "description": "Alarm level constants added"},
-			{"version":"v1.0", "date" : "2025-03-24", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["alarmTraceSuperData", "alarmTraceGlobalData"],
-		"description" : "
+(*--
 
-How it works:
-This function updates global.aXX.triggered and clears the rest of variables
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2025-06-12 | cyanezf | Alarm level constants added |
+| v1.0 | 2025-03-24 | cyanezf | First version |
 
-	 "
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
+| alarmTraceGlobalData |
+
+# Description
+This function updates `global.aXX.triggered` and clears the rest of variables.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 
 	// Info
 	#global.a1i.triggered := #global.a1i.collector;

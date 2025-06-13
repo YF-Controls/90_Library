@@ -1,12 +1,11 @@
 ﻿FUNCTION_BLOCK "_activatePnioDevice"
-TITLE = Function:"Activate/Deactivate Profinet Device"
+TITLE = Function:Activate/Deactivate Profinet Device
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Fieldbus
 NAME : _activatePnioDevice
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2025-03-18","cyanezf","First version"]
+
    VAR_INPUT 
       enable { ExternalWritable := 'False'} : Bool;   // IR: 0=Disable device; 1=Enable device
       isEnabled { ExternalWritable := 'False'} : Bool;   // IR: 0=Is disabled; 1=Is enabled
@@ -51,10 +50,26 @@ VERSION : 1.0
       STATUS_8093_LADDR_IS_NOT_DP : Int := 16#8093;
    END_VAR
 
-
 BEGIN
-	
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-03-18 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TON_TIME |
+
+# Description
+This functino activate/deactivate a Profinet IO Device.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Waiting for a new command
 	IF #state = #STATE_0_WAIT THEN
 	  

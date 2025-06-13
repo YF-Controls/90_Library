@@ -5,22 +5,35 @@ AUTHOR : cyanezf
 FAMILY : Converter
 NAME : _timeToReal
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2023-06-06","cyanezf","First version"]
+
    VAR_INPUT 
       in : Time;
    END_VAR
 
-
 BEGIN
-	(*
-	  Real to time
-	  
-	  max range: T#0s to T#+24d_20h_31m_23s_647ms
-	*)
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2023-06-06 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This funtions converts a time number to real number.
+Max range: `T#0s to T#+24d_20h_31m_23s_647ms`
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
+	// Return
 	#_timeToReal := DINT_TO_REAL(#in)  / 1000.0;
+
+	// Save RLO
 	ENO := true;
 	
 END_FUNCTION
-

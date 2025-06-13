@@ -24,18 +24,26 @@ VERSION : 1.0
 
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.0", "date" : "2025-01-27", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["alarmTraceSuperData", "alarmTraceGlobalData"],
-		"description" : "
+(*--
 
-How it works:
-This function updates global variables according to super variables
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-27 | cyanezf | First version |
 
-	 "
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
+| alarmTraceSuperData |
+| alarmTraceGlobalData |
+
+# Description
+This function updates global variables according to super variables.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 
 	// Info alarms
 	IF #super.a1i.triggered THEN

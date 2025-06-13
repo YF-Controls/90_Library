@@ -2,7 +2,7 @@
 TITLE = Function:Compare 2 values with tolerance
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : MotionControl/Util
+FAMILY : Controller/Util
 NAME : _compareWithTolerance
 VERSION : 1.0
 
@@ -14,17 +14,23 @@ VERSION : 1.0
 
 
 BEGIN
-	(*--{
-		"Log": [
-	 		{"version":"v1.0", "date" : "2025-01-10", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : [],
-		"description" : "
+(*--
 
-This function compares #a and #b are equales with a tolerance.
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-10 | cyanezf | First version |
 
-		"
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
+	
+# Description
+This function compares `a` and `b` are equales with a `tolerance`.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 
 	// Save RLO
 	ENO := ABS(#a - #b) <= #tolerance;

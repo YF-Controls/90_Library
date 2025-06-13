@@ -1,11 +1,32 @@
 ﻿TYPE "escOutput"
-TITLE = Type:"ESC output"
-VERSION : 0.1
-//["version","date","author","description"],
-//["v2.2","2024-07-09","cyanezf","OMC struct added."],
-//["v2.1","2023-11-12","cyanezf","EmrgStopOk added"],
-//["v2.0","2023-10-19","cyanezf","SEL types changed"],
-//["v1.0","2020-09-06","cyanezf","First version"]
+TITLE = Type:ESC output
+AUTHOR : cyanezf
+FAMILY: System
+VERSION : 2.2
+
+//(*--
+//# Falimy
+//* System
+//
+//# Log
+//| version | date | author | description |
+//|:-------:|:----:|:------:|:------------|
+//| v2.2 | 2024-07-09 | cyanezf | OMC struct added |
+//| v2.1 | 2023-11-12 | cyanezf | EmrgStopOk added |
+//| v2.0 | 2023-10-19 | cyanezf | SEL types changed |
+//| v1.0 | 2020-09-06 | cyanezf | First version |
+//
+//# Dependencies
+//| Dependency |
+//|:-----------!
+// 
+//# Description
+//ESC output
+//
+//#
+//--_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+//--*)
+
    STRUCT
       om { ExternalWritable := 'False'} : Struct   // OR: Operating modes
          SEL { ExternalWritable := 'False'} : USInt;   // OR: 0=Control off; 1=Warmrestart; 2=Stop; 3=Maintenance; 4=Manual; 5=Semiautomatic; 6=Automatic; 7=Emergency Stop unack.; 8=Emergency Stop triggered

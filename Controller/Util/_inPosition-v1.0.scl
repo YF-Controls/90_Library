@@ -2,7 +2,7 @@
 TITLE = Function:In position
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : MotionControl/Util
+FAMILY : Controller/Util
 NAME : _inPosition
 VERSION : 1.0
 
@@ -14,14 +14,25 @@ VERSION : 1.0
    END_VAR
 
 BEGIN
-//["version","date","author","description"],
-//["v1.0","2025-01-10","cyanezf","First version"]
-(*
-	  Function to check if the current position is in the range of tolerance of the expected position
-	  It's in position when is homed
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-10 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
 	
-	*)
-	
+# Description
+This function checks if the `actualPosition` is in `POSITION` with `TOLERANCE` and is `homed`.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+   
+   // Save RLO
 	ENO := #homed AND ABS(#POSITION - #actualPosition) < #TOLERANCE;
 	
 END_FUNCTION

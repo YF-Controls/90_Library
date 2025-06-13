@@ -1,13 +1,28 @@
 ﻿TYPE "tcpCommunicationControl"
-TITLE = Type:"TCP Communication control"
+TITLE = Type:TCP Communication control
+AUTHOR : cyanezf
+FAMILY: Communication/TCP
 VERSION : 1.0
-//(*--{"Log": [
-//{"version":"v1.0", "date" : "2024-11-07", "author": "cyanezf, "description": "First version"},
-//],
-//"family":"Communication/TCP",
-//"dependencies" : [],
-//"description" : "TCP communication control"
-//}--*)
+
+//(*--
+//# Falimy
+//* Communication/TCP
+//
+//# Log
+//| version | date | author | description |
+//|:-------:|:----:|:------:|:------------|
+//| v1.0 | 2024-11-07 | cyanezf | First version |
+//
+//# Dependencies
+//| Dependency |
+//|:-----------!
+// 
+//# Description
+//TCP communication control
+//
+//#
+//_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+//--*)
 
    STRUCT
       length : UDInt;   // SW: 0..N=Data length to be sent/received

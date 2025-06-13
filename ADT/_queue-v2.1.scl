@@ -37,36 +37,47 @@ VERSION : 2.1
       STATUS_8FFF_UNKNOWN_COMMAND : Int := 16#8FFF;   // Status: Error - Unknown command
    END_VAR
 
-
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v2.1", "date" : "2024-12-17", "author": "cyanezf, "description": "Full refactor and bugs fixed"},
-		],
-		"dependencies" : ["queueInstanceAttributes"],
-		"description" : "
+(*--
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v2.1 | 2024-12-17 | cyanezf | Full refactor and bugs fixed |
 
-How it works:
-	1. In any call if queue is not initialized, the function tries to do it.
-	2. Command 1: Initialize queue attributes, that means, function clears queue.
-	3. Command 10: Data from buffer is enqueued in data array in rear position.
-	4. Command 20: Data from data array in front position is dequeued to buffer.
-	5. Command 30: Data from data array in front position is read and copied to buffer.
-	6. Unknown command, Init. is tried and returns an error code
+# Dependencies
+| Dependency |
+|:-----------|
+| queueInstanceAttributes |
 	
-Return codes:
-	ENO   Code   Description
-	TRUE  0x0000 Status: Done
-	FALSE 0x8002 Status: Error - Data array is not array
-	FALSE 0x8003 Status: Error - Data array is not valid array
-	FALSE 0x8005 Status: Error - Data array is less than two elements
-	FALSE 0x8010 Status: Error - ADT is empty
-	FALSE 0x8011 Status: Error - ADT is full
-	FALSE 0x8020 Status: Error - Movement from buffer to data
-	FALSE 0x8021 Status: Error - Movement from data to buffer
-	FALSE 0x8FFF Status: Error - Unknown command
-		"
-	}--*)
+# Description
+This function is used to queue/dequeue data
+
+## Commands
+In any call if queue is not initialized, the function tries to do it.
+| Command | Description |
+|:-------:|:------------|
+| 1 | Initialize queue attributes, that means, function clears queue. |
+| 10 | Add dato to last position |
+| 11 | Remove data from first position |
+| 12 | Peek data from first position |
+| Unknown | Init. is tried and returns an error code. |
+
+## RLO and Return
+| RLO | Return | Description |
+|:---:|:------:|:------------|
+| TRUE | 0 | Done |
+| FALSE | 0x8002 | Error - Data array is not array |
+| FALSE | 0x8003 | Error - Data array is not valid array |
+| FALSE | 0x8005 | Error - Data array is less than two elements |
+| FALSE | 0x8010 | Error - ADT is empty |
+| FALSE | 0x8011 | Error - ADT is full |
+| FALSE | 0x8020 | Error - Movement from buffer to data |
+| FALSE | 0x8021 | Error - Movement from data to buffer |
+| FALSE | 0x8FFF | Error - Unknown command |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	REGION Command 01: Initialize
 	  // 1. Initialize

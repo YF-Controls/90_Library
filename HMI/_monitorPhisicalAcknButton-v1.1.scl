@@ -1,16 +1,15 @@
 ﻿FUNCTION_BLOCK "_monitorPhisicalAcknButton"
-TITLE = Function:"Monitor ackn. button"
+TITLE = Function:Monitor ackn. button
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : HMI
 NAME : _monitorPhisicalAcknButton
 VERSION : 1.1
-//["version","date","author","description"],
-//["v1.1","2024-01-13","cyanezf","Fix bugs"],
-//["v1.0","2023-09-27","cyanezf","First version"]
+
    VAR_INPUT 
       button { ExternalWritable := 'False'} : Bool;   // IR: 1=Button is pressed
    END_VAR
+
    VAR_INPUT RETAIN
       WATCHDOG_TIME { ExternalWritable := 'False'} : Time := t#10s;   // IR: 0=Disable watch dog; >0=Enable and monitor watchdog
       ACKN_TIME { ExternalWritable := 'False'} : Time := T#500ms;   // IR: >0=Ackn pulse time
@@ -34,20 +33,29 @@ VERSION : 1.1
       pulseOff : Bool;
    END_VAR
 
-
 BEGIN
-	(/*
-	########################################
-	Dependencies:
-	
-	########################################
-	How it works:
-	
-	This function monitors the ackn button and
-	return a processed pulse when negative edge of
-	button was evaluted.
-	
-	*/)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2024-01-13 | cyanezf | Bugs fixed |
+| v1.0 | 2023-09-27 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TP_TIME |
+| TON_TIME |
+
+# Description
+This function monitors the ackn `button` and
+return a processed pulse when negative edge of
+button was evaluted.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Negative edge from button
 	#pulseOff := NOT #button AND #private.button;
@@ -65,6 +73,8 @@ BEGIN
 	
 	// Return
 	#a2w_1_watchdog := #private.a2w_1_watchdog;
+	 
+	// Save RLO
 	ENO := true;
 	
 END_FUNCTION_BLOCK

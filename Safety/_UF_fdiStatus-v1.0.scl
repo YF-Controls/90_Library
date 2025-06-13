@@ -1,13 +1,11 @@
 ﻿FUNCTION "_UF_fdiStatus" : Int
-TITLE = Function:"FDI status"
+TITLE = Function:FDI status
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Safety
 NAME : _UF_fdiStatus
 VERSION : 2.0
-//["version","date","author","description"],
-//["v2.0","2024-08-10","cyanezf","enable added"]
-//["v1.0","2023-10-17","cyanezf","First version"]
+
    VAR_INPUT 
       enable : Bool;   // 1=Enabled
       e_stop : Bool;   // 1= Emergency stop input is true
@@ -27,22 +25,34 @@ VERSION : 2.0
 
 
 BEGIN
-	(*
-	This function returns a processed value
-	FOR a physical OR virtual FDI
-	########################################
-	Dependencies:
-	
-	########################################
-	Status:
-	0x0000: Disabled
-	0x0001: Ready/Ok
-	0x7000: Emergency stop bypassed
-	0x8000: Emergency stop unacnkowledged
-	0x8001: Channel Passivation
-	0xF000: Emergency stop triggered
-	
-	*)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v2.0 | 2024-08-10 | cyanezf | `enable` added |
+| v1.0 | 2023-10-17 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function returns a processed value for a physical OR virtual FDI.
+
+## RLO and return
+| RLO | value | description |
+|:---:|:-----:|:------------|
+| TRUE | 0 | Disabled |
+| TRUE | 1 | Ready/ok |
+| TRUE | 0x7000 | Emergency stop bypassed |
+| TRUE | 0x8000 | Emergency stop unacnkowledged |
+| TRUE | 0x8001 | Channel Passivation |
+| TRUE | 0xF000 | Emergency stop triggered |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Check conditions
 	IF NOT #enable THEN

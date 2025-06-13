@@ -1,18 +1,15 @@
 ﻿FUNCTION "_dtlToString" : String
-TITLE = Function:{Date and time to string}
+TITLE = Function:Datetime to string
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : CYANEZF
 FAMILY : Converter
 NAME : _dtlToString
 VERSION : 1.2
-//["version","date","author","description"],
-//["v1.2","2025-02-23","cyanezf","Added JSON format"],
-//["v1.1","2022-10-13","cyanezf","Fixed representation format"],
-//["v1.0","2022-10-12","cyanezf","First version"]
+
    VAR_INPUT 
       dat {InstructionName := 'DTL'; LibVersion := '1.0'} : DTL;   // Date and time to convert
-      format : USInt;   // 0=Date and time; 1=Date; 2=Time; 3=Serialized date and time; 4=Serialized date; 5=Serialized time; 6=JSON
-      submultiples : USInt;   // 0=No; 1=Add milliseconds to time; 2=Add microseconds; 3=Add nanoseconds to time;
+      format : USInt;   // 0=Datetime; 1=Date; 2=Time; 3=Serialized datetime; 4=Serialized date; 5=Serialized time; 6=JSON
+      submultiples : USInt;   // 0=No; 1=Add milliseconds; 2=Add microseconds; 3=Add nanoseconds
    END_VAR
 
    VAR_TEMP 
@@ -28,13 +25,13 @@ VERSION : 1.2
    END_VAR
 
    VAR CONSTANT 
-      FORMAT_0_DAT : USInt := 0;   // Date and time: dd/mm/yyyy hh:mm:ss[,000[000[000]]]
+      FORMAT_0_DAT : USInt := 0;   // Datetime: dd/mm/yyyy hh:mm:ss[.000[000[000]]]
       FORMAT_1_DATE : USInt := 1;   // Date: dd/mm/yyyy
-      FORMAT_2_TIME : USInt := 2;   // Time: hh:mm:ss[,000[000[000]]]
-      FORMAT_3_SERIALIZED_DAT : USInt := 3;   // Serialized date and time: yyyymmddhhmmss[000[000[000]]]
+      FORMAT_2_TIME : USInt := 2;   // Time: hh:mm:ss[.000[000[000]]]
+      FORMAT_3_SERIALIZED_DAT : USInt := 3;   // Serialized datetime: yyyymmddhhmmss[000[000[000]]]
       FORMAT_4_SERIALIZED_DATE : USInt := 4;   // Serialized date: yyyymmdd
-      FORMAT_5_SERIALIZED_TIME : USInt := 5;   // Serialized time: ddhhmmss[000[000[000]]]
-      FORMAT_6_JSON_DAT : USInt := 6;   // Serialized date and time as JSON yyyy-mm-ddThh:mm:ss[.000]
+      FORMAT_5_SERIALIZED_TIME : USInt := 5;   // Serialized time: hhmmss[000[000[000]]]
+      FORMAT_6_JSON_DAT : USInt := 6;   // Serialized datetime as JSON yyyy-mm-ddThh:mm:ss[.000]
       SUB_0_NIL : USInt := 0;   // No add millis or seconds
       SUB_1_MS : USInt := 1;   // Add millis [000]
       SUB_2_US : USInt := 2;   // Add micros [000000]
@@ -43,7 +40,46 @@ VERSION : 1.2
 
 
 BEGIN
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+{"version":"v1.2", "date" : "2025-02-23", "author": "cyanezf, "description": "Added JSON format"},
+{"version":"v1.1", "date" : "2022-10-13", "author": "cyanezf, "description": "Fixed representation format"},
+{"version":"v1.0", "date" : "2022-10-12", "author": "cyanezf, "description": "First version"},
+
+# Dependencies
+| Dependency |
+|:-----------|
+| VAL_STRG |
+
+# Description
+This function converts a datetime to string format
+
+## Formats
+| Value | Description | Format |
+|:-----:|:------------|:-------|
+| 0 | datetime | dd/MM/yyyy hh:mm:ss[.000[000[000]]] |
+| 1 | date | dd/MM/yyyy |
+| 2 | time | hh:mm:ss[.000[000[000]]] |
+| 3 | serialized datetime | yyyyMMddhhmmss[.000[000[000]]] |
+| 4 | serialized date | yyyyMMdd |
+| 5 | serialized time | hhmmss[000[000[000]]] |
+| 6 | json datetime | yyyy-MM-ddThh:mm:ss[.000[000[000]]] |
+
+## Submultiples
+| Value | Description | Format |
+|:-----:|:------------|:-------|
+| 0 | No submultiples | |
+| 1 | Add milliseconds | .000 |
+| 2 | Add microseconds | .000000 |
+| 3 | Add nanoseconds | .000000000 |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Get year
 	VAL_STRG(IN := #dat.YEAR,
 	         SIZE := 4,
@@ -219,10 +255,9 @@ BEGIN
 	
 	// Return
 	#_dtlToString := #tString;
+
+	// Save RLO
 	ENO := true;
-	
-	
-	
-	
+		
 END_FUNCTION
 

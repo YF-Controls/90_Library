@@ -1,13 +1,29 @@
 ﻿TYPE "abstractAlarmLevel"
 TITLE = Type:Abstract alarm level data pattern
+AUTHOR : cyanezf
+FAMILY: Alarm
 VERSION : 1.0
-//(*--{"Log": [
-//{"version":"v1.0", "date" : "2025-02-01", "author": "cyanezf, "description": "First version"},
-//],
-//"family":"Alarm",
-//"dependencies" : [],
-//"description" : "Abstract alarm level data pattern"
-//}--*)
+
+//(*--
+//# Falimy
+//* Alarm
+//
+//# Log
+//| version | date | author | description |
+//|:-------:|:----:|:------:|:------------|
+//| v1.0 | 2025-02-01 | cyanezf | First version |
+//
+//# Dependencies
+//| Dependency |
+//|:-----------!
+// 
+//# Description
+//Abstract alarm level data pattern
+//
+//#
+//_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+//--*)
+
    STRUCT
       triggered : Bool;   // 1=Some alarm triggered
       id : Int;   // 0x0000=No alarm, 0xHHHH=Some alarm present

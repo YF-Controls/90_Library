@@ -1,12 +1,11 @@
 ﻿FUNCTION "_UF_enkeyStatus" : Int
-TITLE = Function:"Enabling key status"
+TITLE = Function:Enabling key status
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Safety
 NAME : _UF_enKeyStatus
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2023-10-17","cyanezf","First version"]
+
    VAR_INPUT 
       swKey : Bool;   // 1=Software key in enable position
       F_key : Bool;   // 1=Safety key in enable position
@@ -23,28 +22,34 @@ VERSION : 1.0
 
 
 BEGIN
-	(*
-	This function returns a processed value
-	for a physical Safety key and harwdware
-	enabling bit
-	########################################
-	Dependencies:
-	
-	########################################
-	Inputs:
-	swKey:    1=Software key in enable position
-	F_key:       1=Safety key in enable position
-	Passivation: 1=QBAD or status key bit
-	
-	########################################
-	Status:
-	0x0000: Disabled
-	0x0001: Ready/Ok
-	0x8001: Channel Passivation
-	0x8005: Key mode mismatch 01 (swKey == 0, F_key == 1)
-	0x8006: Key mode mismatch 10 (swKey == 1, F_key == 0)
-	
-	*)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2023-10-17 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function returns a processed value
+for a physical Safety key and harwdware
+enabling bit
+
+## RLO and return
+| RLO | value | description |
+|:---:|:-----:|:------------|
+| TRUE | 0 | Disabled
+| TRUE | 1 | Ready/ok
+| TRUE | 0x8001 | Channel Passivation
+| TRUE | 0x8005 | Key mode mismatch 01 (swKey == 0, F_key == 1) |
+| TRUE | 0x8006 | Key mode mismatch 10 (swKey == 1, F_key == 0) |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Check conditions
 	IF NOT #swKey THEN

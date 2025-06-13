@@ -1,25 +1,41 @@
 ﻿FUNCTION "_realToTime" : Time
-TITLE = Function:"Real to time"
+TITLE = Function:Real to time
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Converter
 NAME : _realToTime
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2025-03-24","cyanezf","First version"]
-   VAR_INPUT 
-      in : Real;
+
+VAR_INPUT 
+      in : Real; // real value
    END_VAR
 
-
 BEGIN
-	(*
-	  Real to time
-	  
-	  max range: T#0s to T#+24d_20h_31m_23s_647ms
-	*)
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-03-24 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function converts a real number to time number
+`integer` part is seconds part
+`decimal` part is milliseconds part
+max range: `T#0s to T#+24d_20h_31m_23s_647ms`
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
+	// Return
 	#_realToTime := REAL_TO_DINT(#in * 1000.0);
+	
+	// Save RLO
 	ENO := true;
 	
 END_FUNCTION

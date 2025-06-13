@@ -5,23 +5,7 @@ AUTHOR : cyanezf
 FAMILY : System
 NAME : _esc
 VERSION : 5.2
-//["version","date","author","description"],
-//["v5.2","2025-06-07","cyanezf","Fixed general bugs"],
-//["v5.1","2025-06-04","cyanezf","Fixed bugs when mode changes"],
-//["v5.0","2025-05-26","cyanezf","Refactorized"],
-//["v4.6","2025-03-04","cyanezf","Cofig.useAutoStartCycle added"],
-//["v4.5","2025-02-23","cyanezf","Selected outputs added"],
-//["v4.4","2024-07-14","cyanezf","Warmrestart mode updated"],
-//["v4.3","2024-07-13","cyanezf","hmiOk added (this checks if Panel is ready to enable movements)"],
-//["v4.2","2024-07-09","cyanezf","OMC added"],
-//["v4.1","2024-01-24","cyanezf","Add EmrgStopOk"],
-//["v4.0.2","2024-01-23","cyanezf","Fix mayor bugs"],
-//["v4.0.1","2023-11-11","cyanezf ","Fix bugs"],
-//["v4.0","2023-10-19","cyanezf","Delays for multi-ESC were added"],
-//["v3.0.1","2023-09-06","cyanezf","fix bugs"],
-//["v3.0","2023-08-02","cyanezf","Io interface was updated (errorAckn, emrgAckn, lampTest)"],
-//["v2.0","2023-07-27","cyanezf"."io interface was updated"],
-//["v1.0","2023-07-13","cyanezf","First version"]
+
    VAR_INPUT 
       F_emrgCircuitOk { ExternalWritable := 'False'} : Bool := 1;   // IR: 1=Emergency circuit Ok
       F_emrgStopOk { ExternalWritable := 'False'} : Bool := 1;   // IR: 1=Emergency stop Ok
@@ -117,44 +101,81 @@ VERSION : 5.2
 
 
 BEGIN
-	(*
-	########################################
-	Dependencies:
-	UDT: escOutput
-	
-	########################################
-	How it works:
-	  Modes:
-	    0 Control off
-	    1 Warm restart
-	    2 Stop mode
-	    3 Maintenance mode
-	    4 Manual mode
-	    5 Semiautomatic mode
-	    6 Automatic mode
-	    7 Emergency stop unacknowledged
-	    8 Emergency stop triggered
-	  
-	  HMI Commands:
-	    0  Null
-	    1  On/Off pulse
-	    2  Stop mode
-	    
-	    3  Maintenance mode
-	    4  Manual mode
-	    5  Semiautomatic mode
-	    6  Automatic mode
-	    
-	    7  Maintenance movement
-	    8  Manual movement
-	    9  Semiautomatic step
-	    10 Automatic cycle
-	    
-	    11 Error acknowledgement
-	    12 Emergency acknowledgement
-	    13 Lamp test
-	
-	*)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v5.2 | 2025-06-07 | cyanezf | Fixed general bugs |
+| v5.1 | 2025-06-04 | cyanezf | Fixed bugs when mode changes |
+| v5.0 | 2025-05-26 | cyanezf | Refactorized |
+| v4.6 | 2025-03-04 | cyanezf | `cofig.useAutoStartCycle` added |
+| v4.5 | 2025-02-23 | cyanezf | Selected outputs added |
+| v4.4 | 2024-07-14 | cyanezf | Warmrestart mode updated |
+| v4.3 | 2024-07-13 | cyanezf | hmiOk added (this checks if Panel is ready to enable movements) |
+| v4.2 | 2024-07-09 | cyanezf | OMC added |
+| v4.1 | 2024-01-24 | cyanezf | Add EmrgStopOk |
+| v4.0.2 | 2024-01-23 | cyanezf | Fix mayor bugs |
+| v4.0.1 | 2023-11-11 | cyanezf  | Fix bugs |
+| v4.0 | 2023-10-19 | cyanezf | Delays for multi-ESC were added |
+| v3.1 | 2023-09-06 | cyanezf | fix bugs |
+| v3.0 | 2023-08-02 | cyanezf | Io interface was updated (errorAckn, emrgAckn, lampTest) |
+| v2.0 | 2023-07-27 | cyanezf | io interface was updated |
+| v1.0 | 2023-07-13 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| escOutput |
+| TON_TIME |
+| TP_TIME |
+
+# Description
+This function controls an Emergency Stop Circuit.
+
+## Operating modes
+| SEL | description |
+|:---:|:------------|
+| 0 | Control off |
+| 1 | Warm restart |
+| 2 | Stop mode |
+| 3 | Maintenance mode |
+| 4 | Manual mode |
+| 5 | Semiautomatic mode |
+| 6 | Automatic mode |
+| 7 | Emergency stop unacknowledged |
+| 8 | Emergency stop triggered |
+
+## Operating cycles
+| SEL | description |
+|:---:|:------------|
+| 0 | No cycle |
+| 3 | Maintenance movement |
+| 4 | Manual movement |
+| 5 | Semiautomatic step |
+| 6 | Automatic cycle |
+
+## HMI Commands
+| command | description |
+|:-------:|:------------|
+| 0 |  Null |
+| 1 |  On/Off pulse |
+| 2 |  Stop mode |
+| 3 |  Maintenance mode |
+| 4 |  Manual mode |
+| 5 |  Semiautomatic mode |
+| 6 |  Automatic mode |
+| 7 |  Maintenance movement |
+| 8 |  Manual movement |
+| 9 |  Semiautomatic step |
+| 10 | Automatic cycle |
+| 11 | Error acknowledgement |
+| 12 | Emergency acknowledgement |
+| 13 | Lamp test |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	REGION HMI Command
 	  
@@ -545,9 +566,6 @@ BEGIN
 	  ENO := true;
 	  
 	END_REGION
-	
-	
-	
 	
 END_FUNCTION_BLOCK
 

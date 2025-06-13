@@ -1,12 +1,11 @@
 ﻿FUNCTION "_getEdges" : Void
-TITLE = Function:"Get edges"
+TITLE = Function:Get edges
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Util
 NAME : _getEdges
 VERSION : 1.0
-//["version","date","author","description"],
-//["v1.0","2025-03-24","cyanezf","First version"]
+
    VAR_INPUT 
       bit : Bool;   // Bit to check
    END_VAR
@@ -20,9 +19,25 @@ VERSION : 1.0
       fp : Bool;   // IOX: Auxiliary static bit (Not temp bit!)
    END_VAR
 
-
 BEGIN
-	
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-03-24 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function returns the positive and negative edges from `bit`.
+
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	#pulseOn := #bit AND NOT #fp;
 	#pulseOff := NOT #bit AND #fp;
 	#fp := #bit;

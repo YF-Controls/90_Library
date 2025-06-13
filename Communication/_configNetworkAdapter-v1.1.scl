@@ -65,18 +65,31 @@ VERSION : 1.1
    END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.1", "date" : "2025-06-10", "author": "cyanezf, "description": "Refactor to scl"},
-			{"version":"v1.0", "date" : "2025-03-24", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["TON_TIME", "IP_V4", "IF_CONF_Header", "IF_CONF_v4", "T_CONFIG", "RDREC",],
-		"description" : "
+(*--
 
-How it works:
-	 Set ip, mask, router according to given data
-		"
-	}--*)
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2025-06-10 | cyanezf | Refactor to scl |
+| v1.0 | 2025-03-24 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TON_TIME |
+| IP_V4 |
+| IF_CONF_Header |
+| IF_CONF_v4 |
+| T_CONFIG |
+| RDREC |
+
+# Description
+Set ip, mask, router according to given data
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 
 	REGION Check configuration change
 	  

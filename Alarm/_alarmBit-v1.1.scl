@@ -19,23 +19,28 @@ VERSION : 1.1
    END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.1", "date" : "2025-02-15", "author": "cyanezf, "description": "u_mapAlarm was removed"},
-			{"version":"v1.0", "date" : "2023-10-27", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : [],
-		"description" : "
+(*--
 
-How it works:
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2025-02-15 | cyanezf | u_mapAlarm was removed |
+| v1.0 | 2023-10-27 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
 Alarm bit #u_thisAlarm is triggered when #incoming is true.
 Alarm bit #u_thisAlarm is reset when #incoming is false, #outcoming is true and #ackn is true or
 #acknNeeded is false.
+`s_localAlarm` is set when #u_thisAlarm is true.
 
-#s_localAlarm is set when #u_thisAlarm is true.
-	 "
-	}--*)
-		
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	// Set/Reset alarm
 	IF #incoming THEN
 	  #u_thisAlarm := true;

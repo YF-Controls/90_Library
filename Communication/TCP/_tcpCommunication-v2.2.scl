@@ -88,25 +88,39 @@ VERSION : 2.2
       COM_CONTROL_8000_ERROR : Int := 16#8000;   // Communication control: 0x8000- Error (sending/receiving)
    END_VAR
 
-
 BEGIN
-	(*--{
-		"Log": [
-	 		{"version":"v2.2", "date" : "2025-05-12", "author": "cyanezf, "description": "Bug fixed NOT useExtTx"},
-	 		{"version":"v2.1", "date" : "2024-11-07", "author": "cyanezf, "description": "SendControl/ReceiverControl structure were replaced by TcpCommunicationControl"},
-	 		{"version":"v2.0", "date" : "2023-01-24", "author": "cyanezf, "description": "Fix state comment"},
-	 		{"version":"v1.2", "date" : "2023-01-18", "author": "cyanezf, "description": "Fix constant name with space"},
-	 		{"version":"v1.1", "date" : "2020-01-01", "author": "cyanezf, "description": "Interface updated"},
-			{"version":"v1.0", "date" : "2019-01-01", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["tcpCommunicationControl", "TCON_IP_v4", "TDiag_Status", "T_DIAG", "TDISCON", "TCON", "TSEND", "TRCV", "TON_TIME"],
-		"description" : "
+(*--
 
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v2.2 | 2025-05-12 | cyanezf | Bug fixed NOT useExtTx |
+| v2.1 | 2024-11-07 | cyanezf | SendControl/ReceiverControl structure were replaced by TcpCommunicationControl |
+| v2.0 | 2023-01-24 | cyanezf | Fix state comment |
+| v1.2 | 2023-01-18 | cyanezf | Fix constant name with space |
+| v1.1 | 2020-01-01 | cyanezf | Interface updated |
+| v1.0 | 2019-01-01 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| tcpCommunicationControl |
+| TCON_IP_v4 |
+| TDiag_Status |
+| T_DIAG |
+| TDISCON |
+| TCON |
+| TSEND |
+| TRCV |
+| TON_TIME |
+
+# Description
 This function connects and disconnects an TCP socket.
 Sends data to and receives data from a remote partnes as TCP server or client.
 
-		"
-	}--*)
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 
 	
 	// ############################################################################

@@ -1,13 +1,11 @@
 ﻿FUNCTION_BLOCK "_siemens_sitop_PSE200U"
-TITLE = Function:"Siemens Sitop PSE200U"
+TITLE = Function:Siemens Sitop PSE200U
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : Protection
 NAME : _siemens_sitop_PSE200U
 VERSION : 1.1
-//["version","date","author","description"],
-//["v1.1","2023-11-12","cyanezf","Fix bugs"],
-//["v1.0","2023-08-30","cyanezf","First version"]
+
    VAR_INPUT 
       pulse { ExternalWritable := 'False'} : Bool;   // IR: Status pulse from Sitop
       ackn : Bool;   // IW: Remote ackn.
@@ -48,39 +46,49 @@ VERSION : 1.1
       STATE_3_UPDATE_OUTPUT : USInt := 3;
    END_VAR
 
-
 BEGIN
-	(/*
-	########################################
-	Dependencies:
-	actualizar libreria
-	########################################
-	How it works:
-	This function decode the status signal from PSE200U
-	according to given frame and updates the channel outputs.
-	
-	 |<-------- Frame: 2750ms ------->|
-	  START P  C1 P  C2 P  C3 P  C4 P
-	 +-----+  +--+  +--+  +--+  +--+  +----
-	 |     |  |  |  |  |  |  |  |  |  |
-	-+     +--+  +--+  +--+  +--+  +--+
-	
-	Start:  500 ms
-	P:      250 ms
-	C1:     250 ms
-	P:      250 ms
-	C2:     250 ms
-	P:      250 ms
-	C3:     250 ms
-	P:      250 ms
-	C4:     250 ms
-	P:      250 ms
-	       --------
-	Frame: 2750 ms
-	
-	
-	
-	*/)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.1 | 2023-11-12 | cyanezf | Bugs fixed |
+| v1.0 | 2023-08-30 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| TON_TIME |
+
+# Description
+This function decode the status signal from PSE200U
+according to given frame and updates the channel outputs.
+
+```
+|<-------- Frame: 2750ms ------->|
+START P  C1 P  C2 P  C3 P  C4 P
++-----+  +--+  +--+  +--+  +--+  +----
+|     |  |  |  |  |  |  |  |  |  |
++     +--+  +--+  +--+  +--+  +--+
+```
+
+| step | time |
+|:-----|:-----|
+| Start | 500 ms |
+| P | 250 ms |
+| C1 | 250 ms |
+| P | 250 ms |
+| C2 | 250 ms |
+| P | 250 ms |
+| C3 | 250 ms |
+| P | 250 ms |
+| C4 | 250 ms |
+| P | 250 ms |
+| **frame** | **2750 ms** |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 	
 	// Catch pulse edged
 	#pulseOn := #pulse AND NOT #private.pulse;

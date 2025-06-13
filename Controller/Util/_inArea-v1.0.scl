@@ -2,7 +2,7 @@
 TITLE = Function:In area
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : MotionControl/Util
+FAMILY : Controller/Util
 NAME : _inArea
 VERSION : 1.0
 
@@ -15,23 +15,25 @@ VERSION : 1.0
 
 
 BEGIN
-	(*
-	  Function to check if the current position is in an area
-	*)
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-10 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
 	
-	(*--{
-		"Log": [
-	 		{"version":"v1.0", "date" : "2025-01-10", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : [],
-		"description" : "
+# Description
+This function checks if `actualPosition` is between `MIN_POSITION` and `MAX_POSITION`.
 
-This function returns if #actualPosition is between MIN and MAX position.
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 
-		"
-	}--*)
-
-   // Save RLO
+  // Save RLO
 	ENO := #homed AND (#actualPosition >= #MIN_POSITION) AND (#actualPosition < #MAX_POSITION);
 	
 END_FUNCTION

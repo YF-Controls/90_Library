@@ -22,18 +22,25 @@ VERSION : 1.0
    END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.0", "date" : "2025-01-27", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : ["alarmTraceGroupData", "alarmTraceSuperData"],
-		"description" : "
+(*--
 
-How it works:
-This function updates super variables according to group variables
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-27 | cyanezf | First version |
 
-	 "
-	}--*)	
+# Dependencies
+| Dependency |
+|:-----------|
+| alarmTraceGroupData |
+| alarmTraceSuperData |
+
+# Description
+This function updates super variables according to group variables.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
 
 	// Info alarms
 	IF #group.a1i.triggered THEN

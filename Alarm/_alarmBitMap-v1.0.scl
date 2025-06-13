@@ -30,20 +30,25 @@ VERSION : 1.0
    END_VAR
 
 BEGIN
-	(*--{
-		"Log": [
-			{"version":"v1.0", "date" : "2025-01-27", "author": "cyanezf, "description": "First version"},
-		],
-		"dependencies" : [],
-		"description" : "
+(*--
 
-How it works:
-      Map every single bit to integer variable
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-01-27 | cyanezf | First version |
 
-    "
-	}--*)
+# Dependencies
+| Dependency |
+|:-----------|
 
-   // Map every single bit to temporal integer
+# Description
+This function maps every single bit to integer variable.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
+  // Map every single bit to temporal integer
 	#t.%X0 := #a00;
 	#t.%X1 := #a01;
 	#t.%X2 := #a02;

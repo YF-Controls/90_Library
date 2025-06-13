@@ -1,14 +1,11 @@
 ﻿FUNCTION "_pnioDiag" : Void
-TITLE = Function:"Profinet IO Diagnostics"
+TITLE = Function:Profinet IO Diagnostics
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : Fieldbus
+FAMILY : Fieldbus/PnioDiag
 NAME : _pnioDiag
 VERSION : 2.0
-//["version","date","author","description"],
-//["v2.0","2025-02-15","cyanezf","Converted to FC and UDT were created"],
-//["v1.1","2020-05-25","cyanezf","Status added"],
-//["v1.0","2020-05-15","cyanezf","First version"]
+
    VAR_INPUT 
       PNIO_SYSTEM : HW_IOSYSTEM;   // PNIO SYSTEM HW SYSTEM
    END_VAR
@@ -45,8 +42,28 @@ VERSION : 2.0
       DEVICE_STATUS_8000_ERROR : Int := 16#8000;
    END_VAR
 
-
 BEGIN
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v2.0 | 2025-02-15 | cyanezf | Converted to FC and UDT were created |
+| v1.1 | 2020-05-25 | cyanezf | Status added |
+| v1.0 | 2020-05-15 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+| ifm_ogd250_status |
+
+# Description
+This function updates PNIO devices status.
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+
 	CASE #subnet.state OF
 	    // ####################################################
 	  #STATE_0_GET_CONFIG:
@@ -140,8 +157,7 @@ BEGIN
 	    #subnet.state := #STATE_0_GET_CONFIG;
 	    
 	END_CASE;
-	
-	
+		
 	// Save RLO
 	ENO := true;
 	

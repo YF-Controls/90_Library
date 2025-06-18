@@ -105,6 +105,8 @@ _Applicable in Siemens Datablock: DB or DI_
 | 91_Vendor | Vendor Libraries |
 | 92_Custom | Custom Library |
 
+----
+
 ## 4. Variable enumations
 
 ### 4.1. Operating mode
@@ -180,8 +182,7 @@ _Applicable in Siemens Datablock: DB or DI_
 | 0 | Null |
 | 1..N | Command number |
 
-
-## 4.9. Drive action
+### 4.9. Drive action
 
 | usint | HMI Command |
 |:----:|:------------|

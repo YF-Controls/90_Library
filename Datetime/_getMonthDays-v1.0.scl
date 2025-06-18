@@ -1,0 +1,73 @@
+﻿FUNCTION "_getMonthDays" : USInt
+TITLE = Function:Get month days
+{ S7_Optimized_Access := 'TRUE' }
+AUTHOR : cyanezf
+FAMILY : Datetime
+NAME : _getMonthDays
+VERSION : 1.0
+   VAR_INPUT 
+      in {InstructionName := 'DTL'; LibVersion := '1.0'} : DTL;   // Datetime in
+   END_VAR
+
+   VAR_TEMP 
+      isLeap : Bool;
+   END_VAR
+
+
+BEGIN
+(*--
+
+# Log
+| version | date | author | description |
+|:-------:|:----:|:------:|:------------|
+| v1.0 | 2025-06-17 | cyanezf | First version |
+
+# Dependencies
+| Dependency |
+|:-----------|
+
+# Description
+This function checks the `year` and `month` and returns the month days.
+
+## Return
+| usint | description |
+|:---:|:------------|
+| 31 | January |
+| 28 | February |
+| 29 | February (leap year) |
+| 31 | March |
+| 30 | April |
+| 31 | May |
+| 30 | June |
+| 31 | July |
+| 31 | August |
+| 30 | September |
+| 31 | October |
+| 30 | November |
+| 31 | December |
+
+#
+_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+--*)
+	
+	IF #in.MONTH = 2 THEN
+	  
+	  #isLeap := #in.YEAR MOD 400 = 0 OR (#in.YEAR MOD 4 = 0 AND #in.YEAR MOD 100 <> 0);
+	  
+	  IF #isLeap THEN
+	    #_getMonthDays := 29;
+	  ELSE
+	    #_getMonthDays := 28;
+	  END_IF;
+	  
+	ELSIF #in.MONTH = 4 OR #in.MONTH = 6 OR #in.MONTH = 9 OR #in.MONTH = 11 THEN
+	  #_getMonthDays := 30;
+	  
+	ELSE
+	  #_getMonthDays := 31;
+	END_IF;
+	
+	ENO := true;
+	
+END_FUNCTION
+

@@ -2,9 +2,9 @@
 TITLE = Function:"Time to real"
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : Converter
+FAMILY : Datetime
 NAME : _timeToReal
-VERSION : 1.0
+VERSION : 1.1
 
    VAR_INPUT 
       in : Time;
@@ -16,6 +16,7 @@ BEGIN
 # Log
 | version | date | author | description |
 |:-------:|:----:|:------:|:------------|
+| v1.1 | 2025-06-18 | cyanezf | Moevd to family: Datetime |
 | v1.0 | 2023-06-06 | cyanezf | First version |
 
 # Dependencies

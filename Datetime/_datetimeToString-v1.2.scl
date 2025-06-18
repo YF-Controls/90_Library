@@ -1,10 +1,10 @@
-﻿FUNCTION "_dtlToString" : String
+﻿FUNCTION "_datetimeToString" : String
 TITLE = Function:Datetime to string
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : CYANEZF
-FAMILY : Converter
-NAME : _dtlToString
-VERSION : 1.2
+FAMILY : Datetime
+NAME : _datetimeToString
+VERSION : 2.0
 
    VAR_INPUT 
       dat {InstructionName := 'DTL'; LibVersion := '1.0'} : DTL;   // Date and time to convert
@@ -45,9 +45,10 @@ BEGIN
 # Log
 | version | date | author | description |
 |:-------:|:----:|:------:|:------------|
-{"version":"v1.2", "date" : "2025-02-23", "author": "cyanezf, "description": "Added JSON format"},
-{"version":"v1.1", "date" : "2022-10-13", "author": "cyanezf, "description": "Fixed representation format"},
-{"version":"v1.0", "date" : "2022-10-12", "author": "cyanezf, "description": "First version"},
+| v2.0 | 2025-06-18 | cyanezf | Name changes from _dtlToString to _datetimeToString and added to family: Datetime |
+| v1.2 | 2025-02-23 | cyanezf | Added JSON format |
+| v1.1 | 2022-10-13 | cyanezf | Fixed representation format |
+| v1.0 | 2022-10-12 | cyanezf | First version |
 
 # Dependencies
 | Dependency |

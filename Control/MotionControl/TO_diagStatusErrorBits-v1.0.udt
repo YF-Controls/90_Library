@@ -1,12 +1,12 @@
 ﻿TYPE "TO_diagStatusErrorBits"
 TITLE = Type:TO Diagnostics status error bits
 AUTHOR : cyanezf
-FAMILY: Controller/MotionControl
+FAMILY: Control/MotionControl
 VERSION : 1.0
 
 //(*--
 //# Falimy
-//* Controller/MotionControl
+//* Control/MotionControl
 //
 //# Log
 //| version | date | author | description |

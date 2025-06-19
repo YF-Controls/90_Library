@@ -1,12 +1,12 @@
 ﻿TYPE "TO_positioningAxis_status"
 TITLE = Type:TO Positioning Axis - status
 AUTHOR : cyanezf
-FAMILY: Controller/MotionControl
+FAMILY: Control/MotionControl
 VERSION : 1.1
 
 //(*--
 //# Falimy
-//* Controller/MotionControl
+//* Control/MotionControl
 //
 //# Log
 //| version | date | author | description |

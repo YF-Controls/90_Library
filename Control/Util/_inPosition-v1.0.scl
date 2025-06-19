@@ -1,18 +1,17 @@
-﻿FUNCTION "_inArea" : Void
-TITLE = Function:In area
+﻿FUNCTION "_inPosition" : Void
+TITLE = Function:In position
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : Controller/Util
-NAME : _inArea
+FAMILY : Control/Util
+NAME : _inPosition
 VERSION : 1.0
 
    VAR_INPUT 
       homed : Bool;   // 1=Homed and sync ok (if there are sync axis)
-      actualPosition : LReal;   // Actual position
-      MIN_POSITION : LReal;   // Minimum reference position
-      MAX_POSITION : LReal;   // Maximum reference position
+      actualPosition : Real;   // Actual position
+      POSITION : Real;   // Reference position
+      TOLERANCE : Real;   // Max tolerance
    END_VAR
-
 
 BEGIN
 (*--
@@ -27,14 +26,14 @@ BEGIN
 |:-----------|
 	
 # Description
-This function checks if `actualPosition` is between `MIN_POSITION` and `MAX_POSITION`.
+This function checks if the `actualPosition` is in `POSITION` with `TOLERANCE` and is `homed`.
 
 #
 _Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
 --*)
-
-  // Save RLO
-	ENO := #homed AND (#actualPosition >= #MIN_POSITION) AND (#actualPosition < #MAX_POSITION);
+   
+   // Save RLO
+	ENO := #homed AND ABS(#POSITION - #actualPosition) < #TOLERANCE;
 	
 END_FUNCTION
 

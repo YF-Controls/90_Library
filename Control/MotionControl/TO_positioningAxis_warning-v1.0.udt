@@ -1,12 +1,12 @@
 ﻿TYPE "TO_positioningAxis_warning"
 TITLE = Type:TO Positioning Axis - warning
 AUTHOR : cyanezf
-FAMILY: Controller/MotionControl
+FAMILY: Control/MotionControl
 VERSION : 1.0
 
 //(*--
 //# Falimy
-//* Controller/MotionControl
+//* Control/MotionControl
 //
 //# Log
 //| version | date | author | description |

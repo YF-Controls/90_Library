@@ -2,7 +2,7 @@
 TITLE = Function:Get weekday
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
-FAMILY : Datetime
+FAMILY : 'Datetime/Util'
 NAME : _getWeekday
 VERSION : 1.0
    VAR_INPUT 
@@ -19,34 +19,34 @@ VERSION : 1.0
 
 
 BEGIN
-(*--
-
-# Log
-| version | date | author | description |
-|:-------:|:----:|:------:|:------------|
-| v1.0 | 2025-06-17 | cyanezf | First version |
-
-# Dependencies
-| Dependency |
-|:-----------|
+	(*--
 	
-# Description
-This function checks the `year` and returns the day of the week.
-
-## Return
-| usint | description |
-|:---:|:------------|
-| 1 | Sunday |
-| 2 | Monday |
-| 3 | Tuesday |
-| 4 | Wednesday |
-| 5 | Thursday |
-| 6 | Friday |
-| 7 | Saturday |
-
-#
-_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
---*)
+	# Log
+	| version | date | author | description |
+	|:-------:|:----:|:------:|:------------|
+	| v1.0 | 2025-06-17 | cyanezf | First version |
+	
+	# Dependencies
+	| Dependency |
+	|:-----------|
+	  
+	# Description
+	This function checks the `year` and returns the day of the week.
+	
+	## Return
+	| usint | description |
+	|:---:|:------------|
+	| 1 | Sunday |
+	| 2 | Monday |
+	| 3 | Tuesday |
+	| 4 | Wednesday |
+	| 5 | Thursday |
+	| 6 | Friday |
+	| 7 | Saturday |
+	
+	#
+	_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+	--*)
 	
 	// Copy data
 	#year := #in.YEAR;

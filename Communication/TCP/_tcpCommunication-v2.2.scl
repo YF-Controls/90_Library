@@ -72,16 +72,19 @@ VERSION : 2.2
       TCP_DIAG_STATE_03_CPU_AS_SERVER_CONNECTING : Byte := 3;   // T_Diag/state 0x03: The passive connection end point is waiting for establishment of the connection to the remote communication partner.
       TCP_DIAG_STATE_04_CONNECTED : Byte := 4;   // T_Diag/state 0x04: Connection established.
       TCP_DIAG_STATE_05_DISCONNECTING : Byte := 5;   // T_Diag/state 0x05: The connection is being terminated. This may be because the "T_RESET" or "T_DISCON" instruction has been called. Other possible reasons are protocol errors and line breaks.
-      TCP_LOAD_0_IDLE : USInt := 0;   // TCP-Config load 0: IDLE
+      
+			TCP_LOAD_0_IDLE : USInt := 0;   // TCP-Config load 0: IDLE
       TCP_LOAD_1_LOADING : USInt := 1;   // TCP-Config load 1: Loading
       TCP_LOAD_2_DISCONNECTION : USInt := 2;   // TCP-Config load 2: Disconnection
       TCP_LOAD_3_CONNECTION : USInt := 3;   // TCP-Config load 3: Connection
-      TCP_STATE_0_SOCKET_DOES_NOT_EXIST : Int := 0;   // TCP Socket state 0: socket doesn't exist
+      
+			TCP_STATE_0_SOCKET_DOES_NOT_EXIST : Int := 0;   // TCP Socket state 0: socket doesn't exist
       TCP_STATE_1_DISCONNECTING : Int := 1;   // TCP Socket state 1: disconnecting
       TCP_STATE_2_DISCONNECTED : Int := 2;   // TCP Socket state 2: disconnected
       TCP_STATE_3_CONNECTING : Int := 3;   // TCP Socket state 3: connecting
       TCP_STATE_4_CONNECTED : Int := 4;   // TCP Socket state 4: connected
-      COM_CONTROL_0_NIL : Int := 0;   // Communication control: 0 - Null
+      
+			COM_CONTROL_0_NIL : Int := 0;   // Communication control: 0 - Null
       COM_CONTROL_1_REQ : Int := 1;   // Communication control: 1 - Sending Request
       COM_CONTROL_2_BUSY : Int := 2;   // Communication control: 2 - Busy (sending/receiving)
       COM_CONTROL_3_DONE : Int := 3;   // Communication control: 3 - Done (data sent or new data received)
@@ -118,10 +121,46 @@ BEGIN
 This function connects and disconnects an TCP socket.
 Sends data to and receives data from a remote partnes as TCP server or client.
 
+## TCP Diag state (*`socketStatus.state`*)
+| byte | constant | Description |
+|:----:|:---------|:------------|
+! 0x00 | TCP_DIAG_STATE_00_NOT_USED | T_Diag/state 0x00: Not used |
+| 0x01 | TCP_DIAG_STATE_01_DISCONNECTED | T_Diag/state 0x01: Connection terminated. Temporary status, for example, after the "T_RESET" instruction is called. The system then automatically attempts to reestablish the connection. |
+| 0x02 | TCP_DIAG_STATE_02_CPU_AS_CLIENT_CONNECTING | T_Diag/state 0x02: The active connection end point is attempting to establish a connection to the remote communication partner. |
+| 0x03 | TCP_DIAG_STATE_03_CPU_AS_SERVER_CONNECTING | T_Diag/state 0x03: The passive connection end point is waiting for establishment of the connection to the remote communication partner. |
+| 0x04 | TCP_DIAG_STATE_04_CONNECTED | T_Diag/state 0x04: Connection established. |
+| 0x05 | TCP_DIAG_STATE_05_DISCONNECTING | T_Diag/state 0x05: The connection is being terminated. This may be because the "T_RESET" or "T_DISCON" instruction has been called. Other possible reasons are protocol errors and line breaks. |
+
+## TCP Load (*`loadConfig`*)
+| usint | constant | Description |
+|:-----:|:---------|:------------|
+| 0 | TCP_LOAD_0_IDLE | IDLE |
+| 1 | TCP_LOAD_1_LOADING | Loading |
+| 2 | TCP_LOAD_2_DISCONNECTION | Disconnection |
+| 3 | TCP_LOAD_3_CONNECTION | Connectino |
+
+## TCP state (*`state`*)
+| int | constant | Description |
+|:----:|:---------|:------------|
+| 0 | TCP_STATE_0_SOCKET_DOES_NOT_EXIST | Socket doesn't exist |
+| 1 | TCP_STATE_1_DISCONNECTING | Disconnecting |
+| 2 | TCP_STATE_2_DISCONNECTED | Disconnected |
+| 3 | TCP_STATE_3_CONNECTING | Connecting |
+| 4 | TCP_STATE_4_CONNECTED | Connected |
+
+## Communication control (*`RX_control.command`,  `TX_control.command`*)
+| int | constant | Description |
+|:----:|:---------|:------------|
+| 0 | COM_CONTROL_0_NIL | Null |
+| 1 | COM_CONTROL_1_REQ | Sending Request |
+| 2 | COM_CONTROL_2_BUSY | Busy (sending/receiving) |
+| 3 | COM_CONTROL_3_DONE | Done (data sent or new data received) |
+| 0x8000 | COM_CONTROL_8000_ERROR | Error (sending/receiving) |
+
+
 #
 _Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
 --*)
-
 	
 	// ############################################################################
 	// TCP Connection handling ####################################################

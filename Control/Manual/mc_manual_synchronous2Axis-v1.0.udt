@@ -1,7 +1,7 @@
 ﻿TYPE "mc_manual_synchronous2Axis"
 TITLE = Type:MC - manual synchronous 2 Axis
 AUTHOR : cyanezf
-FAMILY: Controller/MotionControl
+FAMILY : 'Control/Manual'
 VERSION : 1.0
 
 //(*--

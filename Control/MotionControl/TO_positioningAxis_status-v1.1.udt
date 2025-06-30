@@ -1,7 +1,7 @@
 ﻿TYPE "TO_positioningAxis_status"
 TITLE = Type:TO Positioning Axis - status
 AUTHOR : cyanezf
-FAMILY: Control/MotionControl
+FAMILY: 'Control/MotionControl'
 VERSION : 1.1
 
 //(*--

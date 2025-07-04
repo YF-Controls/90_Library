@@ -2,4 +2,4 @@
 
 ## Dependency Layout
 
-![imagen](__doc_datetimeLibrary-v1.0.svg)
+![__ doc __.svg](__doc__.svg)

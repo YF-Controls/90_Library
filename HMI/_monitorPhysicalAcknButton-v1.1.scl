@@ -1,9 +1,9 @@
-﻿FUNCTION_BLOCK "_monitorPhisicalAcknButton"
+﻿FUNCTION_BLOCK "_monitorPhysicalAcknButton"
 TITLE = Function:Monitor ackn. button
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : HMI
-NAME : _monitorPhisicalAcknButton
+NAME : _monitorPhysicalAcknButton
 VERSION : 1.1
 
    VAR_INPUT 

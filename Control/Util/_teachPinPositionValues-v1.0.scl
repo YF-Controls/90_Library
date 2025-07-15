@@ -5,22 +5,21 @@ AUTHOR : cyanezf
 FAMILY : 'Control/Util'
 NAME : _teachPinPositionValues
 VERSION : 1.0
-
    VAR_INPUT 
-      pin { ExternalWritable := 'False'} : Bool;
-      position { ExternalWritable := 'False'} : Real;
-      direction { ExternalWritable := 'False'} : Bool;   // 0=Forward; 1=Backward
+      pin { ExternalWritable := 'False'} : Bool;   // IR: Pin sensor
+      position { ExternalWritable := 'False'} : Real;   // IR: Current position
+      direction { ExternalWritable := 'False'} : Bool;   // IR: 0=Forward; 1=Backward
    END_VAR
 
    VAR_OUTPUT 
-      fwdPosEdgePosition { ExternalWritable := 'False'} : Real;
-      fwdNegEdgePosition { ExternalWritable := 'False'} : Real;
-      bwdPosEdgePosition { ExternalWritable := 'False'} : Real;
-      bwdNegEdgePosition { ExternalWritable := 'False'} : Real;
+      fwdPosEdgePosition { ExternalWritable := 'False'} : Real;   // OR: Forward positive edge position
+      fwdNegEdgePosition { ExternalWritable := 'False'} : Real;   // OR: Forward negative edge position
+      bwdPosEdgePosition { ExternalWritable := 'False'} : Real;   // OR: Backward positive edge position
+      bwdNegEdgePosition { ExternalWritable := 'False'} : Real;   // OR: Backward negative edge position
    END_VAR
 
    VAR 
-      fp : Bool;
+      fp { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;   // SX: Private static variables
    END_VAR
 
    VAR_TEMP 
@@ -30,24 +29,25 @@ VERSION : 1.0
 
 
 BEGIN
-(*--
-
-# Log
-| version | date | author | description |
-|:-------:|:----:|:------:|:------------|
-| v1.0 | 2025-01-17 | cyanezf | First version |
-
-# Dependencies
-| Dependency |
-|:-----------|
+	(*--
 	
-# Description
-This function is used to save pin sensor position according to Axis position in forward and backward directions.
-
-#
-_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
---*)
-
+	# Log
+	| version | date | author | description |
+	|:-------:|:----:|:------:|:------------|
+	| v1.0 | 2024-02-15 | cyanezf | First version |
+	
+	# Dependencies
+	| Dependency |
+	|:-----------|
+	
+	# Description
+	This function catches the position when `pin` sensor edges are detected in forward and backward direction.
+	
+	
+	#
+	_Use [Markdown Live Preview](https://markdownlivepreview.com/) to watch this doc._
+	--*)
+	
 	// Update edges
 	#pinFp := #pin AND NOT #fp;
 	#pinFn := NOT #pin AND #fp;

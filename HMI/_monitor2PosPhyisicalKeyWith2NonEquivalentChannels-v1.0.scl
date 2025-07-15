@@ -1,9 +1,9 @@
-﻿FUNCTION_BLOCK "_monitor2PosPyisicalKeyWith2NonEquivalentChannels"
+﻿FUNCTION_BLOCK "_monitor2PosPhyisicalKeyWith2NonEquivalentChannels"
 TITLE = Function:Monitor two-position physical key with two non-equivalent channels
 { S7_Optimized_Access := 'TRUE' }
 AUTHOR : cyanezf
 FAMILY : HMI
-NAME : _monitor2PosPyisicalKeyWith2NonEquivalentChannels
+NAME : _monitor2PosPhyisicalKeyWith2NonEquivalentChannels
 VERSION : 1.0
    VAR_INPUT 
       DI_no { ExternalWritable := 'False'} : Bool;   // IR: Normally open digital input
